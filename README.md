@@ -11,7 +11,7 @@
 <img src="https://img.shields.io/badge/License-MIT-red?style=for-the-badge" />
 
 ### 🌐 Live Website
-**https://portfolio-vcc2.vercel.app/**
+**https://vpc-portfolio.netlify.app/**
 
 </div>
 
