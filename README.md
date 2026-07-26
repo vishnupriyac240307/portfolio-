@@ -11,7 +11,7 @@
 <img src="https://img.shields.io/badge/License-MIT-red?style=for-the-badge" />
 
 ### 🌐 Live Website
-**https://YOUR-PORTFOLIO-LINK.netlify.app**
+**https://portfolio-vcc2.vercel.app/**
 
 </div>
 
@@ -283,7 +283,7 @@ vishnupriya.c.240307@gmail.com
 
 ### 💼 LinkedIn
 
-https://linkedin.com/in/YOUR-LINKEDIN
+https://linkedin.com/in/vishnupriyachinnasamy
 
 ### 🐙 GitHub
 
