@@ -119,9 +119,7 @@ export const projects = [
       "Fatigue alert mechanism",
       "Live image processing"
     ],
-    tech: ["Python", "OpenCV", "dlib"],
-    github: "#",
-    demo: "#"
+    tech: ["Python", "OpenCV", "dlib"]
   },
   {
     category: "INDUSTRIAL ANALYTICS",
@@ -135,9 +133,35 @@ export const projects = [
       "Anomaly detection",
       "Early warning support"
     ],
-    tech: ["IoT", "Python", "Data Monitoring"],
-    github: "#",
-    demo: "#"
+    tech: ["IoT", "Python", "Data Monitoring"]
+  },
+  {
+    category: "AI PRODUCTIVITY",
+    title: "AI Study Planner",
+    subtitle: "Smart Personalized Study Scheduling Platform",
+    description:
+      "An intelligent study planning web application that generates personalized daily study schedules based on subjects, syllabus topics, exam dates, priorities, difficulty levels, and available study hours. It automatically creates balanced study, revision, and practice sessions to help students prepare efficiently.",
+    features: [
+      "Personalized study schedule generation",
+      "Subject and syllabus management",
+      "Priority and difficulty-based scheduling",
+      "Automatic revision and practice sessions",
+      "Progress tracking dashboard",
+      "CSV export and print-ready plans",
+      "Dark mode support",
+      "Local Storage persistence"
+    ],
+    tech: [
+      "React",
+      "Vite",
+      "JavaScript",
+      "date-fns",
+      "React Icons",
+      "CSS3",
+      "Local Storage"
+    ],
+    github: "https://github.com/vishnupriyac240307/ai-study-planner",
+    demo: "https://ai-int-study-planner.netlify.app/"
   },
   {
     category: "REACT APPLICATION",
@@ -152,7 +176,8 @@ export const projects = [
       "Local Storage persistence"
     ],
     tech: ["React.js", "Vite", "JavaScript", "CSS3", "React Router"],
-    github: "https://github.com/vishnupriyac240307/mini-ecommerce-cart",
+    github:
+      "https://github.com/vishnupriyac240307/mini-ecommerce-cart",
     demo: "https://miniecommercecart.netlify.app/"
   },
   {
@@ -167,9 +192,7 @@ export const projects = [
       "Inventory analytics",
       "Automated reporting"
     ],
-    tech: ["Python", "SQL", "HTML", "CSS", "JavaScript"],
-    github: "#",
-    demo: "#"
+    tech: ["Python", "SQL", "HTML", "CSS", "JavaScript"]
   }
 ];
 
