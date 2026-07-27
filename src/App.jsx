@@ -303,7 +303,7 @@ function App() {
                 </div>
 
                 <div>
-                  <strong>5</strong>
+                  <strong>6</strong>
                   <span>Featured Projects</span>
                 </div>
 
@@ -442,97 +442,103 @@ function App() {
           ))}
         </section>
 
-        <section
-          id="projects"
-          className="section alternate"
+        <section id="projects" className="section alternate">
+  <SectionHeader
+    eyebrow="SELECTED WORK"
+    title="Featured Projects"
+  />
+
+  <div className="project-grid">
+    {projects.map(project => {
+      const hasGithub =
+        Boolean(project.github) && project.github !== "#";
+
+      const hasDemo =
+        Boolean(project.demo) && project.demo !== "#";
+
+      const isAIProject =
+        project.category.includes("AI") ||
+        project.title.includes("AI");
+
+      return (
+        <article
+          className={`project-card reveal ${
+            isAIProject ? "ai-project-card" : ""
+          }`}
+          key={project.title}
         >
-          <SectionHeader
-            eyebrow="SELECTED WORK"
-            title="Featured Projects"
-          />
+          <div>
+            <div className="project-card-top">
+              <span className="category-pill">
+                {project.category}
+              </span>
 
-          <div className="project-grid">
-            {projects.map(project => {
-              const hasGithub =
-                project.github &&
-                project.github !== "#";
+              {isAIProject && (
+                <span className="ai-project-badge">
+                  AI PROJECT
+                </span>
+              )}
+            </div>
 
-              const hasDemo =
-                project.demo &&
-                project.demo !== "#";
+            <h3>{project.title}</h3>
 
-              const hasLinks =
-                hasGithub || hasDemo;
+            <p className="project-subtitle">
+              {project.subtitle}
+            </p>
 
-              return (
-                <article
-                  className="project-card reveal"
-                  key={project.title}
-                >
-                  <div>
-                    <span className="category-pill">
-                      {project.category}
-                    </span>
+            <p>{project.description}</p>
 
-                    <h3>{project.title}</h3>
+            <p className="mini-label">
+              KEY FEATURES
+            </p>
 
-                    <p className="project-subtitle">
-                      {project.subtitle}
-                    </p>
-
-                    <p>{project.description}</p>
-
-                    <p className="mini-label">
-                      KEY FEATURES
-                    </p>
-
-                    <ul className="check-list">
-                      {project.features.map(feature => (
-                        <li key={feature}>
-                          {feature}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <div className="tag-list compact">
-                      {project.tech.map(tech => (
-                        <span key={tech}>
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-
-                    {hasLinks && (
-                      <div className="project-links">
-                        {hasGithub && (
-                          <a
-                            href={project.github}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            Repository
-                          </a>
-                        )}
-
-                        {hasDemo && (
-                          <a
-                            href={project.demo}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            Live Demo ↗
-                          </a>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </article>
-              );
-            })}
+            <ul className="check-list">
+              {project.features.map(feature => (
+                <li key={feature}>
+                  {feature}
+                </li>
+              ))}
+            </ul>
           </div>
-        </section>
+
+          <div>
+            <div className="tag-list compact">
+              {project.tech.map(tech => (
+                <span key={tech}>
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            {(hasGithub || hasDemo) && (
+              <div className="project-links">
+                {hasGithub && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Repository
+                  </a>
+                )}
+
+                {hasDemo && (
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Live Demo ↗
+                  </a>
+                )}
+              </div>
+            )}
+          </div>
+        </article>
+      );
+    })}
+  </div>
+</section>
 
         <section
           id="publications"
