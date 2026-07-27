@@ -795,16 +795,6 @@ function App() {
                 </a>
               </div>
 
-              <div className="contact-detail">
-                <span>PHONE</span>
-
-                <a
-                  href={`tel:${profile.phone.replace(/\s/g, "")}`}
-                >
-                  {profile.phone}
-                </a>
-              </div>
-
               <div className="contact-links">
                 <a
                   href={profile.github}
