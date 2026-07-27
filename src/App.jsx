@@ -8,7 +8,9 @@ import {
   FiBarChart2,
   FiCpu
 } from "react-icons/fi";
+
 import photo from "./assets/vishnu-priya.png";
+
 import {
   profile,
   education,
@@ -72,7 +74,9 @@ function App() {
           }
         });
       },
-      { threshold: 0.12 }
+      {
+        threshold: 0.12
+      }
     );
 
     revealItems.forEach(item => revealObserver.observe(item));
@@ -116,6 +120,7 @@ function App() {
       setActive(item);
 
       const navbarHeight = 92;
+
       const targetPosition =
         section.getBoundingClientRect().top +
         window.scrollY -
@@ -133,7 +138,10 @@ function App() {
   return (
     <div className="site-shell">
       <header className="navbar">
-        <button className="brand" onClick={() => scrollTo("Home")}>
+        <button
+          className="brand"
+          onClick={() => scrollTo("Home")}
+        >
           {profile.shortName}
         </button>
 
@@ -170,7 +178,10 @@ function App() {
       </header>
 
       <main>
-        <section id="home" className="hero">
+        <section
+          id="home"
+          className="hero"
+        >
           <div className="hero-glow glow-one" />
           <div className="hero-glow glow-two" />
 
@@ -179,38 +190,73 @@ function App() {
               <span />
               {profile.availability}
             </div>
+
             <p className="hero-kicker">HELLO, I'M</p>
+
             <h1>
               VISHNU PRIYA
               <br />
               <span>CHINNASAMY</span>
             </h1>
+
             <h2>{profile.role}</h2>
-            <p className="hero-description">{profile.tagline}</p>
+
+            <p className="hero-description">
+              {profile.tagline}
+            </p>
 
             <div className="hero-actions">
-              <button className="primary-button" onClick={() => scrollTo("Contact")}>
+              <button
+                className="primary-button"
+                onClick={() => scrollTo("Contact")}
+              >
                 Get In Touch
               </button>
+
               <a
-  href="https://mail.google.com/mail/?view=cm&fs=1&to=vishnupriya.c.240307@gmail.com&su=Opportunity%20from%20Portfolio"
-  target="_blank"
-  rel="noreferrer"
->
-  Email
-</a>
-              <a href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
-              <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-              <a href="/Vishnu_Priya_Chinnasamy_Resume.pdf" download>Resume</a>
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=vishnupriya.c.240307@gmail.com&su=Opportunity%20from%20Portfolio"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Email
+              </a>
+
+              <a
+                href={profile.github}
+                target="_blank"
+                rel="noreferrer"
+              >
+                GitHub
+              </a>
+
+              <a
+                href={profile.linkedin}
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn
+              </a>
+
+              <a
+                href="/Vishnu_Priya_Chinnasamy_Resume.pdf"
+                download
+              >
+                Resume
+              </a>
             </div>
           </div>
 
           <div className="hero-photo-wrap reveal">
             <div className="photo-orbit orbit-one" />
             <div className="photo-orbit orbit-two" />
+
             <div className="hero-photo-card">
-              <img src={photo} alt="Vishnu Priya Chinnasamy" />
+              <img
+                src={photo}
+                alt="Vishnu Priya Chinnasamy"
+              />
             </div>
+
             <div className="photo-label">
               <strong>90.5%</strong>
               <span>Academic Aggregate</span>
@@ -218,26 +264,36 @@ function App() {
           </div>
         </section>
 
-        <section id="about" className="section">
-          <SectionHeader eyebrow="PROFESSIONAL PROFILE" title="About Me" />
+        <section
+          id="about"
+          className="section"
+        >
+          <SectionHeader
+            eyebrow="PROFESSIONAL PROFILE"
+            title="About Me"
+          />
+
           <div className="about-grid">
             <div className="glass-panel biography reveal">
               <h3>Professional Biography</h3>
+
               <p>
-                I am a final-year Computer Science with Data Analytics student
-                interested in software development, data analysis, computer
-                vision, and practical digital solutions.
+                I am a final-year Computer Science with Data Analytics
+                student interested in software development, data analysis,
+                computer vision, and practical digital solutions.
               </p>
+
               <p>
                 My technical foundation includes Python, SQL, React.js,
-                JavaScript, HTML, CSS, Power BI, Excel, GitHub, and OpenCV. I
-                enjoy turning real-world requirements into structured,
+                JavaScript, HTML, CSS, Power BI, Excel, GitHub, and OpenCV.
+                I enjoy turning real-world requirements into structured,
                 user-friendly applications and meaningful insights.
               </p>
+
               <p>
                 I am actively seeking opportunities where I can contribute,
-                learn from experienced teams, and grow into a capable Software
-                Developer or Data Analyst.
+                learn from experienced teams, and grow into a capable
+                Software Developer or Data Analyst.
               </p>
 
               <div className="stat-row">
@@ -245,10 +301,12 @@ function App() {
                   <strong>90.5%</strong>
                   <span>B.Sc. Aggregate</span>
                 </div>
+
                 <div>
-                  <strong>4+</strong>
+                  <strong>5</strong>
                   <span>Featured Projects</span>
                 </div>
+
                 <div>
                   <strong>2</strong>
                   <span>Publications</span>
@@ -258,15 +316,25 @@ function App() {
 
             <div className="timeline reveal">
               <h3>Academic Journey</h3>
+
               {education.map(item => (
-                <article className="timeline-card" key={item.title}>
+                <article
+                  className="timeline-card"
+                  key={item.title}
+                >
                   <div className="timeline-dot" />
+
                   <div className="timeline-top">
                     <span>{item.period}</span>
                     <strong>{item.score}</strong>
                   </div>
+
                   <h4>{item.title}</h4>
-                  <p className="institution">{item.institution}</p>
+
+                  <p className="institution">
+                    {item.institution}
+                  </p>
+
                   <p>{item.description}</p>
                 </article>
               ))}
@@ -274,7 +342,10 @@ function App() {
           </div>
         </section>
 
-        <section id="skills" className="section alternate">
+        <section
+          id="skills"
+          className="section alternate"
+        >
           <SectionHeader
             eyebrow="TECHNICAL TOOLKIT"
             title="Skills & Capabilities"
@@ -299,7 +370,9 @@ function App() {
 
                   <div className="tag-list skill-tags">
                     {group.skills.map(skill => (
-                      <span key={skill}>{skill}</span>
+                      <span key={skill}>
+                        {skill}
+                      </span>
                     ))}
                   </div>
                 </article>
@@ -308,75 +381,190 @@ function App() {
           </div>
         </section>
 
-        <section id="experience" className="section">
-          <SectionHeader eyebrow="PRACTICAL JOURNEY" title="Experience & Work" />
+        <section
+          id="experience"
+          className="section"
+        >
+          <SectionHeader
+            eyebrow="PRACTICAL JOURNEY"
+            title="Experience & Work"
+          />
+
           {experience.map(item => (
-            <article className="experience-card reveal" key={item.title}>
-              <div className="experience-icon">⌘</div>
+            <article
+              className="experience-card reveal"
+              key={item.title}
+            >
+              <div className="experience-icon">
+                ⌘
+              </div>
+
               <div className="experience-content">
                 <div className="experience-top">
                   <div>
-                    <p className="eyebrow">{item.badge}</p>
+                    <p className="eyebrow">
+                      {item.badge}
+                    </p>
+
                     <h3>{item.title}</h3>
+
                     <p>{item.company}</p>
                   </div>
-                  <span className="period-pill">{item.period}</span>
+
+                  <span className="period-pill">
+                    {item.period}
+                  </span>
                 </div>
+
                 <div className="divider" />
-                <p className="mini-label">KEY CONTRIBUTIONS</p>
+
+                <p className="mini-label">
+                  KEY CONTRIBUTIONS
+                </p>
+
                 <ul className="check-list">
-                  {item.bullets.map(bullet => <li key={bullet}>{bullet}</li>)}
+                  {item.bullets.map(bullet => (
+                    <li key={bullet}>
+                      {bullet}
+                    </li>
+                  ))}
                 </ul>
+
                 <div className="tag-list compact">
-                  {item.tech.map(tech => <span key={tech}>{tech}</span>)}
+                  {item.tech.map(tech => (
+                    <span key={tech}>
+                      {tech}
+                    </span>
+                  ))}
                 </div>
               </div>
             </article>
           ))}
         </section>
 
-        <section id="projects" className="section alternate">
-          <SectionHeader eyebrow="SELECTED WORK" title="Featured Projects" />
+        <section
+          id="projects"
+          className="section alternate"
+        >
+          <SectionHeader
+            eyebrow="SELECTED WORK"
+            title="Featured Projects"
+          />
+
           <div className="project-grid">
-            {projects.map(project => (
-              <article className="project-card reveal" key={project.title}>
-                <div>
-                  <span className="category-pill">{project.category}</span>
-                  <h3>{project.title}</h3>
-                  <p className="project-subtitle">{project.subtitle}</p>
-                  <p>{project.description}</p>
-                  <p className="mini-label">KEY FEATURES</p>
-                  <ul className="check-list">
-                    {project.features.map(feature => <li key={feature}>{feature}</li>)}
-                  </ul>
-                </div>
-                <div>
-                  <div className="tag-list compact">
-                    {project.tech.map(tech => <span key={tech}>{tech}</span>)}
+            {projects.map(project => {
+              const hasGithub =
+                project.github &&
+                project.github !== "#";
+
+              const hasDemo =
+                project.demo &&
+                project.demo !== "#";
+
+              const hasLinks =
+                hasGithub || hasDemo;
+
+              return (
+                <article
+                  className="project-card reveal"
+                  key={project.title}
+                >
+                  <div>
+                    <span className="category-pill">
+                      {project.category}
+                    </span>
+
+                    <h3>{project.title}</h3>
+
+                    <p className="project-subtitle">
+                      {project.subtitle}
+                    </p>
+
+                    <p>{project.description}</p>
+
+                    <p className="mini-label">
+                      KEY FEATURES
+                    </p>
+
+                    <ul className="check-list">
+                      {project.features.map(feature => (
+                        <li key={feature}>
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <div className="project-links">
-                    <a href={project.github}>Repository</a>
-                    <a href={project.demo}>Live Demo ↗</a>
+
+                  <div>
+                    <div className="tag-list compact">
+                      {project.tech.map(tech => (
+                        <span key={tech}>
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+
+                    {hasLinks && (
+                      <div className="project-links">
+                        {hasGithub && (
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            Repository
+                          </a>
+                        )}
+
+                        {hasDemo && (
+                          <a
+                            href={project.demo}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            Live Demo ↗
+                          </a>
+                        )}
+                      </div>
+                    )}
                   </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              );
+            })}
           </div>
         </section>
 
-        <section id="publications" className="section">
-          <SectionHeader eyebrow="RESEARCH & WRITING" title="Publications" />
+        <section
+          id="publications"
+          className="section"
+        >
+          <SectionHeader
+            eyebrow="RESEARCH & WRITING"
+            title="Publications"
+          />
+
           <div className="publication-list">
             {publications.map(item => (
-              <article className="publication-card reveal" key={item.title}>
-                <div className="publication-icon">▣</div>
+              <article
+                className="publication-card reveal"
+                key={item.title}
+              >
+                <div className="publication-icon">
+                  ▣
+                </div>
+
                 <div>
                   <div className="publication-meta">
                     <span>{item.type}</span>
                     <span>{item.year}</span>
                   </div>
+
                   <h3>{item.title}</h3>
-                  <p className="institution">{item.organization}</p>
+
+                  <p className="institution">
+                    {item.organization}
+                  </p>
+
                   <p>{item.description}</p>
                 </div>
               </article>
@@ -384,8 +572,14 @@ function App() {
           </div>
         </section>
 
-        <section id="certifications" className="section alternate">
-          <SectionHeader eyebrow="VERIFIED CREDENTIALS" title="Certifications" />
+        <section
+          id="certifications"
+          className="section alternate"
+        >
+          <SectionHeader
+            eyebrow="VERIFIED CREDENTIALS"
+            title="Certifications"
+          />
 
           <div className="cert-grid">
             {certifications.map(certificate => (
@@ -394,28 +588,46 @@ function App() {
                 key={certificate.title}
               >
                 <div className="cert-top">
-                  <span className="provider-pill">{certificate.provider}</span>
-                  <span className="cert-year">◫ {certificate.year}</span>
+                  <span className="provider-pill">
+                    {certificate.provider}
+                  </span>
+
+                  <span className="cert-year">
+                    ◫ {certificate.year}
+                  </span>
                 </div>
 
                 <div className="cert-title-row">
-                  <span className="certificate-icon">♙</span>
+                  <span className="certificate-icon">
+                    ♙
+                  </span>
+
                   <div>
                     <h3>{certificate.title}</h3>
-                    <p className="credential-type">{certificate.type}</p>
+
+                    <p className="credential-type">
+                      {certificate.type}
+                    </p>
                   </div>
                 </div>
 
-                <p className="mini-label">SKILLS PRACTICED</p>
+                <p className="mini-label">
+                  SKILLS PRACTICED
+                </p>
 
                 <div className="tag-list compact">
                   {certificate.skills.map(skill => (
-                    <span key={skill}>{skill}</span>
+                    <span key={skill}>
+                      {skill}
+                    </span>
                   ))}
                 </div>
 
                 <div className="cert-footer">
-                  <span className="verified-badge">Certificate Available</span>
+                  <span className="verified-badge">
+                    Certificate Available
+                  </span>
+
                   <a
                     href={certificate.file}
                     target="_blank"
@@ -430,19 +642,29 @@ function App() {
         </section>
 
         <section className="section membership-section">
-          <SectionHeader eyebrow="PROFESSIONAL MEMBERSHIP" title="IEEE Membership" />
+          <SectionHeader
+            eyebrow="PROFESSIONAL MEMBERSHIP"
+            title="IEEE Membership"
+          />
 
           <article className="membership-card reveal">
             <div className="membership-brand">
-              <span className="ieee-name">IEEE</span>
+              <span className="ieee-name">
+                IEEE
+              </span>
+
               <span className="ieee-tagline">
                 Advancing Technology for Humanity
               </span>
             </div>
 
             <div className="membership-content">
-              <p className="eyebrow">{membership.subsection}</p>
+              <p className="eyebrow">
+                {membership.subsection}
+              </p>
+
               <h3>{membership.title}</h3>
+
               <p className="membership-description">
                 {membership.description}
               </p>
@@ -450,23 +672,40 @@ function App() {
               <div className="membership-information">
                 <div>
                   <span>MEMBER NUMBER</span>
-                  <strong>{membership.memberNumber}</strong>
+                  <strong>
+                    {membership.memberNumber}
+                  </strong>
                 </div>
+
                 <div>
                   <span>MEMBERSHIP YEAR</span>
-                  <strong>{membership.year}</strong>
+                  <strong>
+                    {membership.year}
+                  </strong>
                 </div>
+
                 <div>
                   <span>VALIDITY</span>
-                  <strong>{membership.validity}</strong>
+                  <strong>
+                    {membership.validity}
+                  </strong>
                 </div>
               </div>
 
               <div className="membership-actions">
-                <a href={membership.card} target="_blank" rel="noreferrer">
+                <a
+                  href={membership.card}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   View Membership Card ↗
                 </a>
-                <a href={membership.certificate} target="_blank" rel="noreferrer">
+
+                <a
+                  href={membership.certificate}
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   View Membership Certificate ↗
                 </a>
               </div>
@@ -474,14 +713,31 @@ function App() {
           </article>
         </section>
 
-        <section id="achievements" className="section">
-          <SectionHeader eyebrow="TRACK RECORD" title="Honors & Achievements" />
+        <section
+          id="achievements"
+          className="section"
+        >
+          <SectionHeader
+            eyebrow="TRACK RECORD"
+            title="Honors & Achievements"
+          />
+
           <div className="achievement-grid">
             {achievements.map(item => (
-              <article className="achievement-card reveal" key={item.title}>
-                <span className="achievement-metric">{item.metric}</span>
-                <p className="mini-label">RECOGNITION</p>
+              <article
+                className="achievement-card reveal"
+                key={item.title}
+              >
+                <span className="achievement-metric">
+                  {item.metric}
+                </span>
+
+                <p className="mini-label">
+                  RECOGNITION
+                </p>
+
                 <h3>{item.title}</h3>
+
                 <p>{item.description}</p>
 
                 {item.file && (
@@ -499,32 +755,73 @@ function App() {
           </div>
         </section>
 
-        <section id="contact" className="section alternate">
-          <SectionHeader eyebrow="GET IN TOUCH" title="Let's Collaborate" />
+        <section
+          id="contact"
+          className="section alternate"
+        >
+          <SectionHeader
+            eyebrow="GET IN TOUCH"
+            title="Let's Collaborate"
+          />
+
           <div className="contact-grid">
             <div className="contact-card reveal">
               <h3>Contact Information</h3>
+
               <p>
-                I am open to internships, entry-level opportunities, project
-                collaborations, and conversations related to software
-                development and data analytics.
+                I am open to internships, entry-level opportunities,
+                project collaborations, and conversations related to
+                software development and data analytics.
               </p>
+
               <div className="contact-detail">
                 <span>LOCATION</span>
-                <strong>{profile.location}</strong>
+                <strong>
+                  {profile.location}
+                </strong>
               </div>
+
               <div className="contact-detail">
                 <span>EMAIL</span>
-                <a href={`mailto:${profile.email}`}>{profile.email}</a>
+
+                <a href={`mailto:${profile.email}`}>
+                  {profile.email}
+                </a>
               </div>
+
               <div className="contact-detail">
                 <span>PHONE</span>
-                <a href={`tel:${profile.phone.replace(/\s/g, "")}`}>{profile.phone}</a>
+
+                <a
+                  href={`tel:${profile.phone.replace(/\s/g, "")}`}
+                >
+                  {profile.phone}
+                </a>
               </div>
+
               <div className="contact-links">
-                <a href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
-                <a href={profile.linkedin} target="_blank" rel="noreferrer">LinkedIn</a>
-                <a href="/Vishnu_Priya_Chinnasamy_Resume.pdf" download>Download Resume</a>
+                <a
+                  href={profile.github}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  GitHub
+                </a>
+
+                <a
+                  href={profile.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  LinkedIn
+                </a>
+
+                <a
+                  href="/Vishnu_Priya_Chinnasamy_Resume.pdf"
+                  download
+                >
+                  Download Resume
+                </a>
               </div>
             </div>
 
@@ -541,12 +838,14 @@ function App() {
               <div className="form-row">
                 <label>
                   FULL NAME
+
                   <input
                     name="name"
                     type="text"
                     placeholder="Your name"
                     required
                   />
+
                   <ValidationError
                     prefix="Name"
                     field="name"
@@ -556,12 +855,14 @@ function App() {
 
                 <label>
                   EMAIL ADDRESS
+
                   <input
                     name="email"
                     type="email"
                     placeholder="you@example.com"
                     required
                   />
+
                   <ValidationError
                     prefix="Email"
                     field="email"
@@ -572,12 +873,14 @@ function App() {
 
               <label>
                 YOUR MESSAGE
+
                 <textarea
                   name="message"
                   rows="8"
                   placeholder="Tell me about the opportunity or project..."
                   required
                 />
+
                 <ValidationError
                   prefix="Message"
                   field="message"
@@ -590,11 +893,16 @@ function App() {
                 type="submit"
                 disabled={formState.submitting}
               >
-                {formState.submitting ? "Sending..." : "Send Message"}
+                {formState.submitting
+                  ? "Sending..."
+                  : "Send Message"}
               </button>
 
               {formState.succeeded && (
-                <div className="form-status success" role="status">
+                <div
+                  className="form-status success"
+                  role="status"
+                >
                   Thank you! Your message has been sent successfully.
                 </div>
               )}
@@ -608,9 +916,18 @@ function App() {
       <footer>
         <div>
           <strong>{profile.name}</strong>
-          <p>Designed and developed as a modern personal portfolio.</p>
+
+          <p>
+            Designed and developed as a modern personal portfolio.
+          </p>
         </div>
-        <button onClick={() => scrollTo("Home")} aria-label="Back to top">↑</button>
+
+        <button
+          onClick={() => scrollTo("Home")}
+          aria-label="Back to top"
+        >
+          ↑
+        </button>
       </footer>
     </div>
   );
