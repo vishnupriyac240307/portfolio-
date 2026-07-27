@@ -164,6 +164,39 @@ export const projects = [
     demo: "https://ai-int-study-planner.netlify.app/"
   },
   {
+    category: "AI & MACHINE LEARNING",
+    title: "AI Career Readiness Analyser",
+    subtitle: "Career Prediction and Skill Gap Analysis Platform",
+    description:
+      "A full-stack AI and machine-learning application that analyses a student's technical skills, academic profile, projects, internships, certifications, communication ability, problem-solving skills, and career interests. It predicts suitable technology roles, calculates career-readiness scores, identifies missing skills, and generates a personalised learning roadmap.",
+    features: [
+      "Machine-learning-based career role prediction",
+      "Top three matching technology roles",
+      "Placement readiness score calculation",
+      "Technical, academic, project and profile sub-scores",
+      "Personalised skill-gap identification",
+      "Learning roadmap and project recommendations",
+      "Strength and improvement analysis",
+      "Downloadable career readiness report",
+      "Interactive responsive results dashboard",
+      "Demo profiles and input validation"
+    ],
+    tech: [
+      "React",
+      "Vite",
+      "JavaScript",
+      "Python",
+      "Flask",
+      "REST API",
+      "Pandas",
+      "NumPy",
+      "scikit-learn",
+      "Random Forest"
+    ],
+    github:
+      "https://github.com/vishnupriyac240307/ai-career-readiness-analyzer"
+  },
+  {
     category: "REACT APPLICATION",
     title: "Mini E-Commerce Cart System",
     subtitle: "Responsive Single-Page Shopping App",
