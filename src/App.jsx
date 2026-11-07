@@ -724,9 +724,24 @@ function App() {
 
                   <p className="institution">
                     {item.organization}
+                    {item.bookTitle && ` • ${item.bookTitle}`}
                   </p>
 
                   <p>{item.description}</p>
+
+                  {item.isbn && (
+                    <p className="publication-isbn">
+                      <strong>ISBN:</strong> {item.isbn}
+                    </p>
+                  )}
+
+                  {item.areas && (
+                    <div className="tag-list compact" style={{ marginTop: "12px" }}>
+                      {item.areas.map(area => (
+                        <span key={area}>{area}</span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </article>
             ))}

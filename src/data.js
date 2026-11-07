@@ -295,6 +295,23 @@ export const projects = [
 
 export const publications = [
   {
+    type: "Published Book Chapter",
+    title: "Quantum Computing and Future Data Centres",
+    organization: "SHINEMAX International Publications",
+    bookTitle:
+      "Hyper Scale AI Data Centres: Intelligent Infrastructure, Sustainable Computing, and the Future of Agentic AI",
+    year: "2026",
+    isbn: "978-81-69041-64-5",
+    description:
+      "Contributed a chapter to the book Hyper Scale AI Data Centres: Intelligent Infrastructure, Sustainable Computing, and the Future of Agentic AI, exploring the intersection of quantum computing and future data-centre infrastructure. The chapter focuses on the evolving relationship between quantum technologies and next-generation computational environments.",
+    areas: [
+      "Quantum Computing",
+      "Data Centre Infrastructure",
+      "Emerging Technologies",
+      "High-Performance Computing"
+    ]
+  },
+  {
     type: "Conference Paper",
     title: "Generative AI in Analytical Era",
     organization: "Presented at ICBAIC'24",

@@ -717,6 +717,17 @@ button {
   font-size: 1.35rem;
 }
 
+.publication-isbn {
+  font-family: "Space Mono", monospace;
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+.publication-isbn strong {
+  color: var(--purple-soft);
+}
+
 .cert-grid,
 .achievement-grid {
   display: grid;
