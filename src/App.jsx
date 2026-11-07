@@ -6,7 +6,11 @@ import {
   FiServer,
   FiDatabase,
   FiBarChart2,
-  FiCpu
+  FiCpu,
+  FiCopy,
+  FiCheck,
+  FiExternalLink,
+  FiGithub
 } from "react-icons/fi";
 
 import photo from "./assets/vishnu-priya.png";
@@ -48,6 +52,22 @@ const skillIcons = {
   "Core CS & Tools": FiCpu
 };
 
+const projectCategories = [
+  "All",
+  "AI & ML",
+  "Python & Analytics",
+  "React & Web",
+  "Computer Vision & IoT"
+];
+
+const certCategories = [
+  "All",
+  "Job Simulations",
+  "Data Analytics & BI",
+  "AI & Programming",
+  "Internships"
+];
+
 function SectionHeader({ eyebrow, title }) {
   return (
     <div className="section-heading reveal">
@@ -61,7 +81,18 @@ function SectionHeader({ eyebrow, title }) {
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState("Home");
+  const [selectedProjectCategory, setSelectedProjectCategory] = useState("All");
+  const [selectedCertCategory, setSelectedCertCategory] = useState("All");
+  const [copiedItem, setCopiedItem] = useState("");
   const [formState, formspreeSubmit] = useForm("mzdnkndn");
+
+  const copyToClipboard = (text, itemKey) => {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(text);
+      setCopiedItem(itemKey);
+      setTimeout(() => setCopiedItem(""), 2200);
+    }
+  };
 
   useEffect(() => {
     const revealItems = document.querySelectorAll(".reveal");
@@ -112,6 +143,11 @@ function App() {
       window.removeEventListener("resize", updateActiveSection);
     };
   }, []);
+
+  useEffect(() => {
+    const revealElements = document.querySelectorAll(".reveal:not(.visible)");
+    revealElements.forEach(el => el.classList.add("visible"));
+  }, [selectedProjectCategory, selectedCertCategory]);
 
   const scrollTo = item => {
     const section = document.getElementById(item.toLowerCase());
@@ -303,12 +339,17 @@ function App() {
                 </div>
 
                 <div>
-                  <strong>6</strong>
+                  <strong>{projects.length}</strong>
                   <span>Featured Projects</span>
                 </div>
 
                 <div>
-                  <strong>2</strong>
+                  <strong>{certifications.length}+</strong>
+                  <span>Certifications</span>
+                </div>
+
+                <div>
+                  <strong>{publications.length}</strong>
                   <span>Publications</span>
                 </div>
               </div>
@@ -443,102 +484,216 @@ function App() {
         </section>
 
         <section id="projects" className="section alternate">
-  <SectionHeader
-    eyebrow="SELECTED WORK"
-    title="Featured Projects"
-  />
+          <SectionHeader
+            eyebrow="SELECTED WORK"
+            title="Featured Projects"
+          />
 
-  <div className="project-grid">
-    {projects.map(project => {
-      const hasGithub =
-        Boolean(project.github) && project.github !== "#";
-
-      const hasDemo =
-        Boolean(project.demo) && project.demo !== "#";
-
-      const isAIProject =
-        project.category.includes("AI") ||
-        project.title.includes("AI");
-
-      return (
-        <article
-          className={`project-card reveal ${
-            isAIProject ? "ai-project-card" : ""
-          }`}
-          key={project.title}
-        >
-          <div>
-            <div className="project-card-top">
-              <span className="category-pill">
-                {project.category}
-              </span>
-
-              {isAIProject && (
-                <span className="ai-project-badge">
-                  AI PROJECT
+          <div className="filter-tabs-wrapper reveal">
+            {projectCategories.map(cat => (
+              <button
+                key={cat}
+                type="button"
+                className={`filter-tab ${selectedProjectCategory === cat ? "active" : ""}`}
+                onClick={() => setSelectedProjectCategory(cat)}
+              >
+                {cat}
+                <span className="filter-count">
+                  {cat === "All"
+                    ? projects.length
+                    : projects.filter(p => {
+                        if (cat === "AI & ML") {
+                          return (
+                            p.category.includes("AI") ||
+                            p.title.includes("AI") ||
+                            p.subtitle.includes("AI") ||
+                            p.title === "ResumeIQ" ||
+                            p.tech.some(t =>
+                              ["Machine Learning", "NLP", "scikit-learn", "Random Forest"].includes(t)
+                            )
+                          );
+                        }
+                        if (cat === "Python & Analytics") {
+                          return (
+                            p.category.includes("ANALYTICS") ||
+                            p.category.includes("PYTHON") ||
+                            p.tech.some(t =>
+                              ["Python", "Streamlit", "Pandas", "Plotly", "Open-Meteo"].includes(t)
+                            )
+                          );
+                        }
+                        if (cat === "React & Web") {
+                          return (
+                            p.category.includes("REACT") ||
+                            p.category.includes("WEB") ||
+                            p.category.includes("PRODUCTIVITY") ||
+                            p.tech.some(t =>
+                              ["React", "React.js", "Vite", "JavaScript", "CSS3"].includes(t)
+                            )
+                          );
+                        }
+                        if (cat === "Computer Vision & IoT") {
+                          return (
+                            p.category.includes("COMPUTER VISION") ||
+                            p.category.includes("INDUSTRIAL") ||
+                            p.tech.some(t => ["OpenCV", "IoT", "dlib"].includes(t))
+                          );
+                        }
+                        return true;
+                      }).length}
                 </span>
-              )}
-            </div>
-
-            <h3>{project.title}</h3>
-
-            <p className="project-subtitle">
-              {project.subtitle}
-            </p>
-
-            <p>{project.description}</p>
-
-            <p className="mini-label">
-              KEY FEATURES
-            </p>
-
-            <ul className="check-list">
-              {project.features.map(feature => (
-                <li key={feature}>
-                  {feature}
-                </li>
-              ))}
-            </ul>
+              </button>
+            ))}
           </div>
 
-          <div>
-            <div className="tag-list compact">
-              {project.tech.map(tech => (
-                <span key={tech}>
-                  {tech}
-                </span>
-              ))}
-            </div>
+          <div className="project-grid">
+            {projects
+              .filter(project => {
+                if (selectedProjectCategory === "All") return true;
+                if (selectedProjectCategory === "AI & ML") {
+                  return (
+                    project.category.includes("AI") ||
+                    project.title.includes("AI") ||
+                    project.subtitle.includes("AI") ||
+                    project.title === "ResumeIQ" ||
+                    project.tech.some(t =>
+                      ["Machine Learning", "NLP", "scikit-learn", "Random Forest"].includes(t)
+                    )
+                  );
+                }
+                if (selectedProjectCategory === "Python & Analytics") {
+                  return (
+                    project.category.includes("ANALYTICS") ||
+                    project.category.includes("PYTHON") ||
+                    project.tech.some(t =>
+                      ["Python", "Streamlit", "Pandas", "Plotly", "Open-Meteo"].includes(t)
+                    )
+                  );
+                }
+                if (selectedProjectCategory === "React & Web") {
+                  return (
+                    project.category.includes("REACT") ||
+                    project.category.includes("WEB") ||
+                    project.category.includes("PRODUCTIVITY") ||
+                    project.tech.some(t =>
+                      ["React", "React.js", "Vite", "JavaScript", "CSS3"].includes(t)
+                    )
+                  );
+                }
+                if (selectedProjectCategory === "Computer Vision & IoT") {
+                  return (
+                    project.category.includes("COMPUTER VISION") ||
+                    project.category.includes("INDUSTRIAL") ||
+                    project.tech.some(t => ["OpenCV", "IoT", "dlib"].includes(t))
+                  );
+                }
+                return true;
+              })
+              .map(project => {
+                const hasGithub =
+                  Boolean(project.github) && project.github !== "#" && project.github.trim() !== "";
 
-            {(hasGithub || hasDemo) && (
-              <div className="project-links">
-                {hasGithub && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Repository
-                  </a>
-                )}
+                const hasDemo =
+                  Boolean(project.demo) && project.demo !== "#" && project.demo.trim() !== "";
 
-                {hasDemo && (
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noreferrer"
+                const isAIProject =
+                  project.category.includes("AI") ||
+                  project.title.includes("AI") ||
+                  project.subtitle.includes("AI") ||
+                  project.title === "ResumeIQ";
+
+                return (
+                  <article
+                    className={`project-card reveal visible ${
+                      isAIProject ? "ai-project-card" : ""
+                    }`}
+                    key={project.title}
                   >
-                    Live Demo ↗
-                  </a>
-                )}
-              </div>
-            )}
+                    <div>
+                      <div className="project-card-top">
+                        <span className="category-pill">
+                          {project.category}
+                        </span>
+
+                        <div className="project-badges">
+                          {hasDemo && (
+                            <span className="live-demo-badge">
+                              <span className="radar-dot" />
+                              LIVE DEMO
+                            </span>
+                          )}
+
+                          {isAIProject && (
+                            <span className="ai-project-badge">
+                              AI PROJECT
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      <h3>{project.title}</h3>
+
+                      <p className="project-subtitle">
+                        {project.subtitle}
+                      </p>
+
+                      <p>{project.description}</p>
+
+                      <p className="mini-label">
+                        KEY FEATURES
+                      </p>
+
+                      <ul className="check-list">
+                        {project.features.map(feature => (
+                          <li key={feature}>
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      <div className="tag-list compact">
+                        {project.tech.map(tech => (
+                          <span key={tech}>
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+
+                      {(hasGithub || hasDemo) && (
+                        <div className="project-links">
+                          {hasGithub && (
+                            <a
+                              className="repo-link"
+                              href={project.github}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <FiGithub style={{ marginRight: "6px" }} />
+                              Repository
+                            </a>
+                          )}
+
+                          {hasDemo && (
+                            <a
+                              className="demo-link"
+                              href={project.demo}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              <FiExternalLink style={{ marginRight: "6px" }} />
+                              Live Demo ↗
+                            </a>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </article>
+                );
+              })}
           </div>
-        </article>
-      );
-    })}
-  </div>
-</section>
+        </section>
 
         <section
           id="publications"
@@ -587,63 +742,132 @@ function App() {
             title="Certifications"
           />
 
-          <div className="cert-grid">
-            {certifications.map(certificate => (
-              <article
-                className={`cert-card reveal cert-${certificate.accent}`}
-                key={certificate.title}
+          <div className="filter-tabs-wrapper reveal">
+            {certCategories.map(cat => (
+              <button
+                key={cat}
+                type="button"
+                className={`filter-tab ${selectedCertCategory === cat ? "active" : ""}`}
+                onClick={() => setSelectedCertCategory(cat)}
               >
-                <div className="cert-top">
-                  <span className="provider-pill">
-                    {certificate.provider}
-                  </span>
-
-                  <span className="cert-year">
-                    ◫ {certificate.year}
-                  </span>
-                </div>
-
-                <div className="cert-title-row">
-                  <span className="certificate-icon">
-                    ♙
-                  </span>
-
-                  <div>
-                    <h3>{certificate.title}</h3>
-
-                    <p className="credential-type">
-                      {certificate.type}
-                    </p>
-                  </div>
-                </div>
-
-                <p className="mini-label">
-                  SKILLS PRACTICED
-                </p>
-
-                <div className="tag-list compact">
-                  {certificate.skills.map(skill => (
-                    <span key={skill}>
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="cert-footer">
-                  <span className="verified-badge">
-                    Certificate Available
-                  </span>
-
-                  <a
-                    href={certificate.file}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Verify / View Certificate ↗
-                  </a>
-                </div>
-              </article>
+                {cat}
+                <span className="filter-count">
+                  {cat === "All"
+                    ? certifications.length
+                    : certifications.filter(c => {
+                        if (cat === "Job Simulations") return c.type === "Job Simulation";
+                        if (cat === "Data Analytics & BI") {
+                          return (
+                            c.title.includes("Analytics") ||
+                            c.title.includes("Power BI") ||
+                            c.skills.some(s =>
+                              s.toLowerCase().includes("analytic") ||
+                              s.toLowerCase().includes("power bi") ||
+                              s.toLowerCase().includes("excel")
+                            )
+                          );
+                        }
+                        if (cat === "AI & Programming") {
+                          return c.skills.some(
+                            s =>
+                              s.toLowerCase().includes("ai") ||
+                              s.toLowerCase().includes("python")
+                          );
+                        }
+                        if (cat === "Internships") return c.type.includes("Internship");
+                        return true;
+                      }).length}
+                </span>
+              </button>
             ))}
+          </div>
+
+          <div className="cert-grid">
+            {certifications
+              .filter(certificate => {
+                if (selectedCertCategory === "All") return true;
+                if (selectedCertCategory === "Job Simulations") {
+                  return certificate.type === "Job Simulation";
+                }
+                if (selectedCertCategory === "Data Analytics & BI") {
+                  return (
+                    certificate.title.includes("Analytics") ||
+                    certificate.title.includes("Power BI") ||
+                    certificate.skills.some(s =>
+                      s.toLowerCase().includes("analytic") ||
+                      s.toLowerCase().includes("power bi") ||
+                      s.toLowerCase().includes("excel")
+                    )
+                  );
+                }
+                if (selectedCertCategory === "AI & Programming") {
+                  return certificate.skills.some(
+                    s =>
+                      s.toLowerCase().includes("ai") ||
+                      s.toLowerCase().includes("python")
+                  );
+                }
+                if (selectedCertCategory === "Internships") {
+                  return certificate.type.includes("Internship");
+                }
+                return true;
+              })
+              .map(certificate => (
+                <article
+                  className={`cert-card reveal visible cert-${certificate.accent}`}
+                  key={certificate.title}
+                >
+                  <div className="cert-top">
+                    <span className="provider-pill">
+                      {certificate.provider}
+                    </span>
+
+                    <span className="cert-year">
+                      ◫ {certificate.year}
+                    </span>
+                  </div>
+
+                  <div className="cert-title-row">
+                    <span className="certificate-icon">
+                      ♙
+                    </span>
+
+                    <div>
+                      <h3>{certificate.title}</h3>
+
+                      <p className="credential-type">
+                        {certificate.type}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="mini-label">
+                    SKILLS PRACTICED
+                  </p>
+
+                  <div className="tag-list compact">
+                    {certificate.skills.map(skill => (
+                      <span key={skill}>
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="cert-footer">
+                    <span className="verified-badge">
+                      Certificate Available
+                    </span>
+
+                    <a
+                      href={certificate.file}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Verify / View Certificate ↗
+                    </a>
+                  </div>
+                </article>
+              ))}
           </div>
         </section>
 
@@ -782,18 +1006,56 @@ function App() {
 
               <div className="contact-detail">
                 <span>LOCATION</span>
-                <strong>
-                  {profile.location}
-                </strong>
+                <strong>{profile.location}</strong>
               </div>
 
               <div className="contact-detail">
                 <span>EMAIL</span>
-
-                <a href={`mailto:${profile.email}`}>
-                  {profile.email}
-                </a>
+                <div className="contact-copy-row">
+                  <a href={`mailto:${profile.email}`}>{profile.email}</a>
+                  <button
+                    type="button"
+                    className="copy-btn"
+                    onClick={() => copyToClipboard(profile.email, "email")}
+                    title="Copy email address"
+                    aria-label="Copy email address"
+                  >
+                    {copiedItem === "email" ? (
+                      <span className="copied-tag">
+                        <FiCheck style={{ marginRight: "4px" }} /> Copied!
+                      </span>
+                    ) : (
+                      <FiCopy />
+                    )}
+                  </button>
+                </div>
               </div>
+
+              {profile.phone && (
+                <div className="contact-detail">
+                  <span>PHONE</span>
+                  <div className="contact-copy-row">
+                    <a href={`tel:${profile.phone.replace(/\s+/g, "")}`}>
+                      {profile.phone}
+                    </a>
+                    <button
+                      type="button"
+                      className="copy-btn"
+                      onClick={() => copyToClipboard(profile.phone, "phone")}
+                      title="Copy phone number"
+                      aria-label="Copy phone number"
+                    >
+                      {copiedItem === "phone" ? (
+                        <span className="copied-tag">
+                          <FiCheck style={{ marginRight: "4px" }} /> Copied!
+                        </span>
+                      ) : (
+                        <FiCopy />
+                      )}
+                    </button>
+                  </div>
+                </div>
+              )}
 
               <div className="contact-links">
                 <a

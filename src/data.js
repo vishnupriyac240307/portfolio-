@@ -92,6 +92,19 @@ export const skillGroups = [
 
 export const experience = [
   {
+    badge: "Internship",
+    title: "React App Development Intern",
+    company: "Naan Mudhalvan",
+    period: "2026",
+    bullets: [
+      "Developed modular and responsive front-end web applications using React.js, JavaScript, and modern CSS.",
+      "Implemented state management, component hierarchies, and interactive UI features.",
+      "Collaborated on practical coding assignments, code reviews, and modern front-end best practices.",
+      "Completed hands-on software development training and earned verified internship credential."
+    ],
+    tech: ["React.js", "JavaScript", "HTML5", "CSS3", "Vite", "Git"]
+  },
+  {
     badge: "Practical Experience",
     title: "Web Application & Data Project Development",
     company: "Academic and Independent Projects",
@@ -108,32 +121,55 @@ export const experience = [
 
 export const projects = [
   {
-    category: "COMPUTER VISION",
-    title: "Driver Drowsiness Detection System",
-    subtitle: "Real-Time Safety Monitoring",
+    category: "AI & MACHINE LEARNING",
+    title: "ResumeIQ",
+    subtitle: "Intelligent Resume Analysis & Job Matching Platform",
     description:
-      "A computer-vision system that monitors eye closure and facial landmarks to detect driver fatigue and trigger timely alerts.",
+      "A web-based resume analysis application that evaluates uploaded resumes, extracts relevant information, and provides insights to help users understand their resume's strengths and areas for improvement.",
     features: [
-      "Real-time eye and face monitoring",
-      "Facial landmark detection",
-      "Fatigue alert mechanism",
-      "Live image processing"
+      "Resume upload and parsing",
+      "Automated resume analysis",
+      "Resume scoring and feedback",
+      "Skills and keyword identification",
+      "Job description matching",
+      "Interactive analysis results"
     ],
-    tech: ["Python", "OpenCV", "dlib"]
+    tech: [
+      "Python",
+      "Flask",
+      "Machine Learning",
+      "NLP",
+      "HTML",
+      "CSS",
+      "JavaScript"
+    ],
+    github: "https://github.com/vishnupriyac240307/AI-Resume-Analyzer",
+    demo: "https://ai-resume-analyser-green-seven.vercel.app/"
   },
   {
-    category: "INDUSTRIAL ANALYTICS",
-    title: "Industrial Monitoring System",
-    subtitle: "IoT-Based Anomaly Detection",
+    category: "DATA ANALYTICS & PYTHON",
+    title: "WeatherWise",
+    subtitle: "Interactive Weather Monitoring & Analytics Platform",
     description:
-      "An industrial monitoring solution that collects sensor data, detects abnormal patterns, and supports early warning and operational decisions.",
+      "An interactive weather analytics dashboard that provides real-time weather conditions, multi-day forecasts, historical weather analysis, and data visualizations using live weather API data.",
     features: [
-      "Sensor-data collection",
-      "Real-time parameter monitoring",
-      "Anomaly detection",
-      "Early warning support"
+      "Real-time weather monitoring",
+      "1–16 day weather forecasts",
+      "Historical weather analysis",
+      "Interactive temperature and precipitation charts",
+      "Celsius and Fahrenheit conversion",
+      "CSV data export"
     ],
-    tech: ["IoT", "Python", "Data Monitoring"]
+    tech: [
+      "Python",
+      "Streamlit",
+      "Pandas",
+      "Plotly",
+      "REST API",
+      "Open-Meteo"
+    ],
+    github: "https://github.com/vishnupriyac240307/WeatherWise",
+    demo: "https://weatherwise-dashboard.streamlit.app/"
   },
   {
     category: "AI PRODUCTIVITY",
@@ -212,6 +248,34 @@ export const projects = [
     github:
       "https://github.com/vishnupriyac240307/mini-ecommerce-cart",
     demo: "https://miniecommercecart.netlify.app/"
+  },
+  {
+    category: "COMPUTER VISION",
+    title: "Driver Drowsiness Detection System",
+    subtitle: "Real-Time Safety Monitoring",
+    description:
+      "A computer-vision system that monitors eye closure and facial landmarks to detect driver fatigue and trigger timely alerts.",
+    features: [
+      "Real-time eye and face monitoring",
+      "Facial landmark detection",
+      "Fatigue alert mechanism",
+      "Live image processing"
+    ],
+    tech: ["Python", "OpenCV", "dlib"]
+  },
+  {
+    category: "INDUSTRIAL ANALYTICS",
+    title: "Industrial Monitoring System",
+    subtitle: "IoT-Based Anomaly Detection",
+    description:
+      "An industrial monitoring solution that collects sensor data, detects abnormal patterns, and supports early warning and operational decisions.",
+    features: [
+      "Sensor-data collection",
+      "Real-time parameter monitoring",
+      "Anomaly detection",
+      "Early warning support"
+    ],
+    tech: ["IoT", "Python", "Data Monitoring"]
   },
   {
     category: "ONGOING CAPSTONE",

@@ -412,9 +412,15 @@ button {
 
 .stat-row {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
   margin-top: 34px;
+}
+
+@media (max-width: 900px) {
+  .stat-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .stat-row div {
@@ -1853,4 +1859,176 @@ footer button {
   .project-links a {
     width: 100%;
   }
+}
+
+/* ==========================================================
+   ENHANCED UI & FILTER TABS
+   ========================================================== */
+
+/* Filter Tabs */
+.filter-tabs-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0 auto 36px;
+  max-width: 900px;
+  padding: 0 16px;
+}
+
+.filter-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(19, 27, 48, 0.6);
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(12px);
+}
+
+.filter-tab:hover {
+  color: #fff;
+  border-color: rgba(139, 92, 246, 0.4);
+  background: rgba(139, 92, 246, 0.1);
+  transform: translateY(-2px);
+}
+
+.filter-tab.active {
+  color: #fff;
+  border-color: var(--purple);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.32), rgba(74, 222, 170, 0.18));
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.25);
+}
+
+.filter-tab .filter-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 999px;
+  font-family: "Space Mono", monospace;
+  font-size: 0.72rem;
+  background: rgba(255, 255, 255, 0.08);
+  color: #d1d5db;
+}
+
+.filter-tab.active .filter-count {
+  background: rgba(139, 92, 246, 0.5);
+  color: #ffffff;
+}
+
+/* Project Badges & Live Radar Dot */
+.project-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.live-demo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 13px;
+  border-radius: 999px;
+  background: rgba(74, 222, 170, 0.1);
+  border: 1px solid rgba(74, 222, 170, 0.4);
+  color: #4adeaa;
+  font-family: "Space Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.radar-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4adeaa;
+  box-shadow: 0 0 0 0 rgba(74, 222, 170, 0.7);
+  animation: radar-pulse 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes radar-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 170, 0.85);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(74, 222, 170, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(74, 222, 170, 0);
+  }
+}
+
+/* Enhanced Link Styles */
+.project-links a.demo-link {
+  background: linear-gradient(135deg, rgba(74, 222, 170, 0.16), rgba(139, 92, 246, 0.22));
+  border-color: rgba(74, 222, 170, 0.5);
+  color: #6ee7b7;
+}
+
+.project-links a.demo-link:hover {
+  background: linear-gradient(135deg, rgba(74, 222, 170, 0.28), rgba(139, 92, 246, 0.35));
+  border-color: #4adeaa;
+  box-shadow: 0 10px 24px rgba(74, 222, 170, 0.22);
+}
+
+.project-links a.repo-link {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(166, 176, 210, 0.22);
+  color: #e2e8f0;
+}
+
+.project-links a.repo-link:hover {
+  border-color: var(--border-purple);
+  background: rgba(139, 92, 246, 0.15);
+  box-shadow: 0 8px 20px rgba(139, 92, 246, 0.18);
+}
+
+/* Contact Copy Buttons */
+.contact-copy-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+  color: #fff;
+  border-color: var(--purple);
+  background: rgba(139, 92, 246, 0.15);
+  transform: translateY(-1px);
+}
+
+.copied-tag {
+  display: inline-flex;
+  align-items: center;
+  color: var(--green);
+  font-size: 0.74rem;
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
 }
